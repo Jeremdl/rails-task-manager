@@ -1,0 +1,14 @@
+<h1 class="text-center border-bottom bg-secondary py-3">My tasks</h1>
+<ul class="list-unstyled">
+  <% @tasks.each_with_index do |task, index| %>
+    <li class="d-flex justify-content-between border-bottom">
+      <%= link_to "#{index+1} | #{task.title} | Status : #{task.completed ? 'Completed' : 'Ongoing'}", task_path(task), class:"my-4" %>
+      <%= link_to "Delete",
+        task_path(task),
+        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
+        class:"m-3 btn btn-danger"
+      %>
+    </li>
+  <% end %>
+</ul>
+<%= link_to "New task!", tasks_new_path, class:"btn btn-primary" %>
